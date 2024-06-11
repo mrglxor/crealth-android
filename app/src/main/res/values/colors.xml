@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="bgPrimary">#F2F9F9</color>
+    <color name="textPrimary">#5FAAB1</color>
+    <color name="bgBtn">#438E96</color>
+    <color name="textSecondary">#7F7F7F</color>
+    <color name="textPrimaryVariant">#3B757F</color>
+    <color name="textOnPrimary">#5FAAB1</color>
+    <color name="transparant">#00FFFFFF</color>
+    <color name="textOnSecondary">#D9D9D9</color>
+
+</resources>

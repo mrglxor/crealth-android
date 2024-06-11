@@ -1,0 +1,20 @@
+<resources>
+    <style name="Base.Theme.Crealth" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="android:statusBarColor">@color/textOnPrimary</item>
+    </style>
+
+    <style name="Theme.Crealth" parent="Base.Theme.Crealth" />
+
+    <style name="Theme.App.Crealth" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/bgPrimary</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/logo_splash_screen</item>
+        <item name="postSplashScreenTheme">@style/Base.Theme.Crealth</item>
+    </style>
+
+    <style name="Theme.App.Crealth.ActionBars" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:statusBarColor">@color/textOnPrimary</item>
+        <item name="colorPrimary">@color/textOnPrimary</item>
+    </style>
+
+</resources>
