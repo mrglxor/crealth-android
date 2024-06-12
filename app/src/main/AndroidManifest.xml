@@ -16,6 +16,9 @@
         android:theme="@style/Base.Theme.Crealth"
         tools:targetApi="31">
         <activity
+            android:name=".view.ArticleDetailActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.MainActivity"
             android:exported="true"
             android:theme="@style/Theme.App.Crealth">
@@ -29,8 +32,7 @@
             android:name=".view.ChatbotActivity"
             android:exported="false"
             android:label="@string/chatbot"
-            android:theme="@style/Theme.App.Crealth.ActionBars">
-        </activity>
+            android:theme="@style/Theme.App.Crealth.ActionBars"></activity>
         <activity
             android:name=".view.LandingActivity"
             android:exported="false" />
