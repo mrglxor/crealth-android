@@ -26,12 +26,6 @@ data class UserData(
     @SerializedName("email_verify_at")
     val emailVerifyAt: String? = null,
 
-    @SerializedName("gender")
-    val gender: String? = null,
-
-    @SerializedName("ttl")
-    val ttl: String? = null,
-
     @SerializedName("rememberToken")
     val rememberToken: String? = null,
 

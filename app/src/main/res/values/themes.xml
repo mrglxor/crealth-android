@@ -1,5 +1,5 @@
 <resources>
-    <style name="Base.Theme.Crealth" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Base.Theme.Crealth" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
         <item name="android:statusBarColor">@color/textOnPrimary</item>
     </style>
@@ -15,6 +15,10 @@
     <style name="Theme.App.Crealth.ActionBars" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="android:statusBarColor">@color/textOnPrimary</item>
         <item name="colorPrimary">@color/textOnPrimary</item>
+    </style>
+
+    <style name="Widget.App.ProgressBar" parent="Widget.AppCompat.ProgressBar">
+        <item name="colorAccent">@color/textOnPrimary</item>
     </style>
 
 </resources>

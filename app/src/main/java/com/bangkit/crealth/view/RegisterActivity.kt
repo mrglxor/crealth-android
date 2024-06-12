@@ -70,7 +70,7 @@ class RegisterActivity : AppCompatActivity() {
             binding.btnRegister.isEnabled = false
             binding.btnRegister.text = getString(R.string.loading)
 
-            viewModel.register(RegisterModel(name,email,password,"0000-00-00","laki-laki"),this)
+            viewModel.register(RegisterModel(name,email,password),this)
         }
     }
 

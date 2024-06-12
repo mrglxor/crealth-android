@@ -14,6 +14,8 @@ import com.bangkit.crealth.view.fragment.ProfileFragment
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
+    private var isLoading = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Thread.sleep(500)
@@ -27,30 +29,38 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupBottomNavigation() {
         binding.bottomNavigation.setOnNavigationItemSelectedListener { menuItem ->
-            when(menuItem.itemId) {
-                R.id.nav_home -> {
-                    loadFragment(HomeFragment())
-                    true
+            if(!isLoading) {
+                when(menuItem.itemId) {
+                    R.id.nav_home -> {
+                        loadFragment(HomeFragment())
+                        true
+                    }
+                    R.id.nav_forum -> {
+                        loadFragment(ForumFragment())
+                        true
+                    }
+                    R.id.nav_article -> {
+                        loadFragment(ArticleFragment())
+                        true
+                    }
+                    R.id.nav_profile -> {
+                        loadFragment(ProfileFragment())
+                        true
+                    }
+                    else -> false
                 }
-                R.id.nav_forum -> {
-                    loadFragment(ForumFragment())
-                    true
-                }
-                R.id.nav_article -> {
-                    loadFragment(ArticleFragment())
-                    true
-                }
-                R.id.nav_profile -> {
-                    loadFragment(ProfileFragment())
-                    true
-                }
-                else -> false
+            }else{
+                false
             }
         }
         binding.bottomNavigation.selectedItemId = R.id.nav_home
     }
 
     private fun loadFragment(fragment: Fragment) {
-        supportFragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).commit()
+        isLoading = true
+        supportFragmentManager.beginTransaction().replace(R.id.fragment_container, fragment)
+            .commitAllowingStateLoss()
+        supportFragmentManager.executePendingTransactions()
+        isLoading = false
     }
 }

@@ -36,18 +36,16 @@ class LoginActivity : AppCompatActivity() {
 
                 viewModel.loginResult.observe(this) { response ->
                     response?.let {
-                        if (it.error != null) {
+                        if (!it.error.isNullOrEmpty()) {
                             showErrorDialog(it.error)
                         } else {
                             response.data?.let { user ->
                                 val data = UserModel(
-                                    user.name ?: "testing",
-                                    user.id ?: "testing",
+                                    user.name!!,
+                                    user.id!!,
                                     "",
                                     true,
-                                    user.rememberToken ?: "testing",
-                                    user.ttl ?: "testing",
-                                    user.gender ?: "testing"
+                                    user.rememberToken!!
                                 )
                                 viewModel.saveSession(data)
 
@@ -59,6 +57,8 @@ class LoginActivity : AppCompatActivity() {
                                 startActivity(intentLogin)
                                 finish()
                             }
+                            Toast.makeText(this,"an error occurred on the server!",Toast.LENGTH_LONG).show()
+                            binding.btnLogin.text = getString(R.string.error)
                         }
                     }
                 }
@@ -109,7 +109,8 @@ class LoginActivity : AppCompatActivity() {
             binding.btnLogin.text = getString(R.string.loading)
             binding.btnLogin.isEnabled = false
 
-            viewModel.login(LoginModel(email,password),this)
+//            viewModel.login(LoginModel(email,password),this)
+            startActivity(Intent(this,MainActivity::class.java))
         }
     }
 

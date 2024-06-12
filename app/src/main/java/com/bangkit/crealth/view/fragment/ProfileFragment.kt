@@ -1,5 +1,6 @@
 package com.bangkit.crealth.view.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,7 @@ import com.bangkit.crealth.data.factory.ViewModelFactory
 import com.bangkit.crealth.data.viewmodel.HomeViewModel
 import com.bangkit.crealth.data.viewmodel.ProfileViewModel
 import com.bangkit.crealth.databinding.FragmentProfileBinding
+import com.bangkit.crealth.view.LandingActivity
 
 class ProfileFragment : Fragment() {
     private var _binding: FragmentProfileBinding? = null
@@ -35,7 +37,8 @@ class ProfileFragment : Fragment() {
             binding.tvUserEmail.text = user.email
         }
         binding.btnLogout.setOnClickListener {
-            viewModel.logout()
+//            viewModel.logout()
+            startActivity(Intent(requireContext(),LandingActivity::class.java))
         }
     }
 

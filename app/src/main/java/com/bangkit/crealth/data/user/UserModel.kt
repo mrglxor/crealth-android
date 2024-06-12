@@ -5,7 +5,5 @@ data class UserModel(
     val email: String,
     val password: String,
     val isLogin: Boolean = false,
-    val token: String = "",
-    val ttl: String,
-    val gender: String
+    val token: String = ""
 )
