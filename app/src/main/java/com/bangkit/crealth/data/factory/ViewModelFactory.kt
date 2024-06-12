@@ -8,6 +8,7 @@ import com.bangkit.crealth.data.viewmodel.RegisterViewModel
 import com.bangkit.crealth.data.api.Injection
 import com.bangkit.crealth.data.viewmodel.HomeViewModel
 import com.bangkit.crealth.data.viewmodel.LoginViewModel
+import com.bangkit.crealth.data.viewmodel.ProfileViewModel
 
 class ViewModelFactory(private val repo: UserRepository) : ViewModelProvider.NewInstanceFactory() {
     @Suppress("UNCHECKED_CAST")
@@ -21,6 +22,9 @@ class ViewModelFactory(private val repo: UserRepository) : ViewModelProvider.New
             }
             modelClass.isAssignableFrom(HomeViewModel::class.java) -> {
                 HomeViewModel(repo) as T
+            }
+            modelClass.isAssignableFrom(ProfileViewModel::class.java) -> {
+                ProfileViewModel(repo) as T
             }
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }

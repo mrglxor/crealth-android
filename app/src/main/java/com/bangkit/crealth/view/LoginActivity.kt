@@ -37,7 +37,7 @@ class LoginActivity : AppCompatActivity() {
                 viewModel.loginResult.observe(this) { response ->
                     response?.let {
                         if (it.error != null) {
-                            it.message?.let { message -> showErrorDialog(message) }
+                            showErrorDialog(it.error)
                         } else {
                             response.data?.let { user ->
                                 val data = UserModel(
@@ -69,7 +69,7 @@ class LoginActivity : AppCompatActivity() {
 
     private fun showErrorDialog(message: String) {
         AlertDialog.Builder(this).apply {
-            setTitle("Login Error!")
+            setTitle("Message!")
             setMessage(message)
             setPositiveButton("OK") { dialog, _ ->
                 dialog.dismiss()

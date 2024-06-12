@@ -44,10 +44,6 @@ class HomeFragment : Fragment() {
                     Toast.makeText(requireContext(), successMessage, Toast.LENGTH_SHORT).show()
                     activity?.intent?.removeExtra("successMessage")
                 }
-
-                binding.btnNotif.setOnClickListener {
-                    viewModel.logout()
-                }
                 binding.btnChatbot.setOnClickListener {
                     startActivity(Intent(requireContext(), ChatbotActivity::class.java))
                 }

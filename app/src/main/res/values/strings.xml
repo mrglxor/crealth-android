@@ -27,7 +27,7 @@
     <string name="landing_4">Already have an account?</string>
     <string name="landing_5"><u>Login</u></string>
     <string name="loading">Loading...</string>
-    <string name="error">Coba Kembali</string>
+    <string name="error">Try Again</string>
     <string name="title_activity_register">RegisterActivity</string>
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
