@@ -20,6 +20,7 @@
             android:exported="false" />
         <activity
             android:name=".view.MainActivity"
+            android:launchMode="singleTask"
             android:exported="true"
             android:theme="@style/Theme.App.Crealth">
             <intent-filter>
@@ -32,7 +33,7 @@
             android:name=".view.ChatbotActivity"
             android:exported="false"
             android:label="@string/chatbot"
-            android:theme="@style/Theme.App.Crealth.ActionBars"></activity>
+            android:theme="@style/Theme.App.Crealth.ActionBars"/>
         <activity
             android:name=".view.LandingActivity"
             android:exported="false" />

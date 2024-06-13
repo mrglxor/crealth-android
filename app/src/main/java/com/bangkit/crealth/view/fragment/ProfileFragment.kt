@@ -13,6 +13,7 @@ import com.bangkit.crealth.data.viewmodel.HomeViewModel
 import com.bangkit.crealth.data.viewmodel.ProfileViewModel
 import com.bangkit.crealth.databinding.FragmentProfileBinding
 import com.bangkit.crealth.view.LandingActivity
+import com.bangkit.crealth.view.MainActivity
 
 class ProfileFragment : Fragment() {
     private var _binding: FragmentProfileBinding? = null
@@ -32,13 +33,21 @@ class ProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         viewModel.getSession().observe(viewLifecycleOwner) { user ->
-            binding.tvUserFullName.text = user.name
-            binding.tvUserEmail.text = user.email
-        }
-        binding.btnLogout.setOnClickListener {
-//            viewModel.logout()
-            startActivity(Intent(requireContext(),LandingActivity::class.java))
+            if (!user.isLogin && user.token.isBlank()) {
+                startActivity(Intent(requireContext(), LandingActivity::class.java).apply {
+                    flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                })
+            } else {
+                binding.tvUserFullName.text = user.name
+                binding.tvUserEmail.text = user.email
+
+                binding.btnLogout.setOnClickListener {
+                    viewModel.logout()
+                }
+
+            }
         }
     }
 

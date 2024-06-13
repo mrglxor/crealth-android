@@ -1,5 +1,6 @@
 package com.bangkit.crealth.view
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
@@ -26,7 +27,12 @@ class RegisterActivity : AppCompatActivity() {
         viewModel.registerResult.observe(this) { response ->
             response?.let {
                 if(it.message != null ){
-                    showMessageDialog(response.message!!)
+                    val intentRegister = Intent(this, LandingActivity::class.java).apply {
+                        putExtra("successMessage", response.message)
+                        flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                    }
+                    startActivity(intentRegister)
+                    finish()
                 }else{
                     showMessageDialog(response.error!!)
                     binding.btnRegister.text =  getString(R.string.error)

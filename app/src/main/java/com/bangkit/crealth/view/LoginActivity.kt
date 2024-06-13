@@ -42,7 +42,7 @@ class LoginActivity : AppCompatActivity() {
                             response.data?.let { user ->
                                 val data = UserModel(
                                     user.name!!,
-                                    user.id!!,
+                                    user.email!!,
                                     "",
                                     true,
                                     user.rememberToken!!
@@ -52,13 +52,11 @@ class LoginActivity : AppCompatActivity() {
                                 val successMessage = it.message ?: "Login successful"
                                 val intentLogin = Intent(this, MainActivity::class.java).apply {
                                     putExtra("successMessage", successMessage)
-                                    flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                                    flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                                 }
                                 startActivity(intentLogin)
                                 finish()
                             }
-                            Toast.makeText(this,"an error occurred on the server!",Toast.LENGTH_LONG).show()
-                            binding.btnLogin.text = getString(R.string.error)
                         }
                     }
                 }
@@ -109,8 +107,7 @@ class LoginActivity : AppCompatActivity() {
             binding.btnLogin.text = getString(R.string.loading)
             binding.btnLogin.isEnabled = false
 
-//            viewModel.login(LoginModel(email,password),this)
-            startActivity(Intent(this,MainActivity::class.java))
+            viewModel.login(LoginModel(email,password),this)
         }
     }
 

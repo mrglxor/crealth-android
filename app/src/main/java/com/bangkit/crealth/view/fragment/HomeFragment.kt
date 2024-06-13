@@ -18,23 +18,19 @@ import com.bangkit.crealth.data.viewmodel.HomeViewModel
 import com.bangkit.crealth.databinding.FragmentHomeBinding
 import com.bangkit.crealth.view.ChatbotActivity
 import com.bangkit.crealth.view.LandingActivity
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 
 class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
-
-    private var successMessage: String? = null
-
     private val binding get() = _binding!!
-
-    private var foodList = mutableListOf<BrandedFood>()
 
     private val viewModel by viewModels<HomeViewModel> {
         ViewModelFactory.getInstance(requireContext())
     }
+
+    private var foodList = mutableListOf<BrandedFood>()
+    private var successMessage: String? = null
+    private var fetchDataJob: Job? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -47,11 +43,11 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        viewModel.getSession().observe(viewLifecycleOwner) { user ->
-//            if (!user.isLogin && user.token.isBlank()) {
-//                startActivity(Intent(requireContext(), LandingActivity::class.java))
-//            } else {
-//                binding.tvName.text = user.name
+        viewModel.getSession().observe(viewLifecycleOwner) { user ->
+            if (!user.isLogin && user.token.isBlank()) {
+                startActivity(Intent(requireContext(), LandingActivity::class.java))
+            } else {
+                binding.tvName.text = user.name
 
                 successMessage = activity?.intent?.getStringExtra("successMessage")
                 if (successMessage != null) {
@@ -61,15 +57,21 @@ class HomeFragment : Fragment() {
                 binding.btnChatbot.setOnClickListener {
                     startActivity(Intent(requireContext(), ChatbotActivity::class.java))
                 }
+                binding.btnNotif.setOnClickListener {
+                    Toast.makeText(requireContext(), "Notification is under Maintenance", Toast.LENGTH_LONG).show()
+                }
 
                 fetchData()
             }
-//        }
-//    }
+        }
+    }
 
     private fun fetchData() {
         binding.progressBar.visibility = View.VISIBLE
-        CoroutineScope(Dispatchers.IO).launch {
+
+        fetchDataJob?.cancel()
+
+        fetchDataJob = CoroutineScope(Dispatchers.IO).launch {
             try {
                 val response = NutritionixApi.service.searchFood("drugs")
                 withContext(Dispatchers.Main) {
@@ -89,9 +91,10 @@ class HomeFragment : Fragment() {
                             )
                         })
 
-                        val adapter = ArticleHomeAdapter(foodList)
-                        binding.rvArticleHome.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-                        binding.rvArticleHome.adapter = adapter
+                        binding.rvArticleHome.apply {
+                            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+                            adapter = ArticleHomeAdapter(foodList)
+                        }
                     } else {
                         showDummyData()
                         showToast("Error Unknown!")
@@ -101,7 +104,7 @@ class HomeFragment : Fragment() {
             } catch (e: Exception) {
                 withContext(Dispatchers.Main) {
                     showDummyData()
-                    showToast("Error Unknown! activate your internet!")
+                    showToast("Error Unknown! Activate your internet!")
                     binding.progressBar.visibility = View.GONE
                 }
             }
@@ -120,45 +123,13 @@ class HomeFragment : Fragment() {
                 brandNameItemName = "Dummy Item 1",
                 locale = "",
                 nixItemId = ""
-            ),
-            BrandedFood(
-                foodName = "Dummy Food 2",
-                servingQty = "1".toDouble(),
-                servingUnit = "serving",
-                calories = 100,
-                photo = Photo(""),
-                brandName = "",
-                brandNameItemName = "Dummy Item 2",
-                locale = "",
-                nixItemId = ""
-            ),
-            BrandedFood(
-                foodName = "Dummy Food 3",
-                servingQty = "1".toDouble(),
-                servingUnit = "serving",
-                calories = 100,
-                photo = Photo(""),
-                brandName = "",
-                brandNameItemName = "Dummy Item 3",
-                locale = "",
-                nixItemId = ""
-            ),
-            BrandedFood(
-                foodName = "Dummy Food 4",
-                servingQty = "1".toDouble(),
-                servingUnit = "serving",
-                calories = 100,
-                photo = Photo(""),
-                brandName = "",
-                brandNameItemName = "Dummy Item 4",
-                locale = "",
-                nixItemId = ""
             )
         )
 
-        val adapter = ArticleHomeAdapter(dummyFoodList)
-        binding.rvArticleHome.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        binding.rvArticleHome.adapter = adapter
+        binding.rvArticleHome.apply {
+            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            adapter = ArticleHomeAdapter(dummyFoodList)
+        }
     }
 
     private fun showToast(message: String) {
@@ -167,6 +138,7 @@ class HomeFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
+        fetchDataJob?.cancel()
         _binding = null
     }
 }

@@ -5,73 +5,50 @@
     android:layout_height="match_parent"
     android:background="@color/white">
 
-    <ScrollView
-        android:id="@+id/scrollView2"
+    <com.google.android.material.search.SearchBar
+        android:theme="@style/Theme.Material3.DayNight.NoActionBar"
+        android:id="@+id/searchBar"
         android:layout_width="0dp"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="16dp"
+        android:hint="@string/article_1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearanceOverlay="@style/SearchBarShape" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+    <com.google.android.material.search.SearchView
+        android:theme="@style/Theme.Material3.DayNight.NoActionBar"
+        android:id="@+id/searchView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/article_1"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@+id/searchBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:shapeAppearanceOverlay="@style/SearchBarShape" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:layout_constraintEnd_toEndOf="@+id/textView"
-                app:layout_constraintStart_toEndOf="@+id/textView">
+    <TextView
+        android:id="@+id/tvRecommended"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/article_2"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="@id/searchBar"
+        app:layout_constraintTop_toBottomOf="@+id/searchView" />
 
-                <com.google.android.material.search.SearchBar
-                    android:theme="@style/Theme.Material3.DayNight.NoActionBar"
-                    android:id="@+id/searchBar"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="16dp"
-                    android:layout_marginTop="16dp"
-                    android:hint="@string/article_1"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:shapeAppearanceOverlay="@style/SearchBarShape" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvArticleList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:paddingBottom="140dp"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/tvRecommended"/>
 
-                <com.google.android.material.search.SearchView
-                    android:theme="@style/Theme.Material3.DayNight.NoActionBar"
-                    android:id="@+id/searchView"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:hint="@string/article_1"
-                    app:layout_anchor="@id/searchBar"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:shapeAppearanceOverlay="@style/SearchBarShape" />
-
-                <TextView
-                    android:id="@+id/tvRecommended"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:text="@string/article_2"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/black"
-                    app:layout_constraintStart_toStartOf="@+id/searchBar"
-                    app:layout_constraintTop_toBottomOf="@+id/searchBar" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rvArticleList"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="16dp"
-                    android:layout_centerInParent="true"
-                    android:orientation="horizontal"
-                    app:layout_constraintTop_toBottomOf="@+id/tvRecommended" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </LinearLayout>
-    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
