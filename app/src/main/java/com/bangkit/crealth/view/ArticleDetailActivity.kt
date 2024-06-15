@@ -1,11 +1,14 @@
 package com.bangkit.crealth.view
 
+import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.bangkit.crealth.R
 import com.bangkit.crealth.data.model.Article
 import com.bangkit.crealth.databinding.ActivityArticleDetailBinding
 
@@ -17,6 +20,11 @@ class ArticleDetailActivity : AppCompatActivity() {
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setBackgroundDrawable(ColorDrawable(ContextCompat.getColor(this, R.color.blue_400)))
+        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_arrow_left)
+
         binding = ActivityArticleDetailBinding.inflate(layoutInflater)
         enableEdgeToEdge()
         setContentView(binding.root)
@@ -40,4 +48,9 @@ class ArticleDetailActivity : AppCompatActivity() {
             binding.desc.text = text
         }
     }
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
+    }
+
 }
