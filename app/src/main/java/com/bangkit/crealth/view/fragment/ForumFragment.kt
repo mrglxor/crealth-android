@@ -28,8 +28,8 @@ class ForumFragment : Fragment() {
 
         TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
             tab.text = when (position) {
-                0 -> "Post Box"
-                1 -> "Reply"
+                0 -> "Public"
+                1 -> "Create Post"
                 else -> null
             }
         }.attach()

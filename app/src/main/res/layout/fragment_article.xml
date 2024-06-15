@@ -5,6 +5,47 @@
     android:layout_height="match_parent"
     android:background="@color/white">
 
+    <LinearLayout
+        android:id="@+id/welcome_layout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="26dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tvArticleBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="@string/article1"
+                android:textColor="@color/black"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
+
+            <Button
+                android:id="@+id/btnNotif"
+                android:layout_width="24dp"
+                android:layout_height="30dp"
+                android:layout_marginEnd="22dp"
+                android:background="@drawable/ic_notification"
+                android:contentDescription="@string/notification_button_description"
+                android:theme="@style/Theme.AppCompat"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+
     <com.google.android.material.search.SearchBar
         android:theme="@style/Theme.Material3.DayNight.NoActionBar"
         android:id="@+id/searchBar"
@@ -12,10 +53,14 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="16dp"
+        android:background="@drawable/searchbar_background"
         android:hint="@string/article_1"
+        android:backgroundTint="@color/white"
+        app:strokeColor="@color/grey_600"
+        app:strokeWidth="2dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/welcome_layout"
         app:shapeAppearanceOverlay="@style/SearchBarShape" />
 
     <com.google.android.material.search.SearchView
@@ -24,6 +69,10 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="@string/article_1"
+        android:backgroundTint="@color/white"
+        android:background="@drawable/searchbar_background"
+        app:strokeColor="@color/grey_600"
+        app:strokeWidth="2dp"
         android:visibility="gone"
         app:layout_constraintTop_toBottomOf="@+id/searchBar"
         app:layout_constraintEnd_toEndOf="parent"
@@ -50,5 +99,16 @@
         android:paddingBottom="140dp"
         android:orientation="vertical"
         app:layout_constraintTop_toBottomOf="@+id/tvRecommended"/>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        style="@style/Widget.App.ProgressBar"
+        app:layout_constraintTop_toTopOf="@id/rvArticleList"
+        app:layout_constraintBottom_toBottomOf="@id/rvArticleList"
+        app:layout_constraintStart_toStartOf="@id/rvArticleList"
+        app:layout_constraintEnd_toEndOf="@id/rvArticleList" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
