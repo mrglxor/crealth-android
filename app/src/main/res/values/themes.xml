@@ -29,8 +29,7 @@
 
     <!-- Custom Article Search -->
     <style name="SearchBarShape" parent="ShapeAppearance.MaterialComponents.SmallComponent">
-        <item name="cornerSize">4dp</item>
-        <item name="backgroundColor">@color/white</item>
+        <item name="cornerSize">14dp</item>
     </style>
 
 </resources>
