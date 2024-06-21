@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bottom_sheet_background"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/tvSymptoms"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Gejala: "
+        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+        android:textColor="@color/textPrimary"
+        android:paddingBottom="8dp" />
+
+    <TextView
+        android:id="@+id/tvDiseases"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Penyakit: "
+        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+        android:textColor="@color/textPrimary"
+        android:paddingBottom="8dp" />
+
+    <TextView
+        android:id="@+id/tvDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Deskripsi: "
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:paddingBottom="8dp" />
+
+    <TextView
+        android:id="@+id/tvPrecautions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tindakan pencegahan: "
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:paddingBottom="16dp" />
+
+    <Button
+        android:id="@+id/btnCopy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Salin Hasil"
+        android:layout_gravity="end"
+        android:backgroundTint="@color/textPrimary"
+        android:textColor="@android:color/white"
+        android:padding="8dp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="By Crealth"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="@color/textPrimary"
+        android:paddingBottom="8dp" />
+</LinearLayout>

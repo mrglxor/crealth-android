@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 data class NutritionixResponse(
     @SerializedName("common")
-    val common: List<Any>, // Anda bisa mendefinisikan model khusus untuk common jika diperlukan
+    val common: List<Any>,
     @SerializedName("branded")
     val branded: List<BrandedFood>
 )

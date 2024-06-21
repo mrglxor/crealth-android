@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:id="@+id/itemArticleList">
+    android:id="@+id/itemArticleList"
+    android:layout_margin="10dp">
 
     <LinearLayout
         android:id="@+id/layoutArticle"
@@ -27,7 +28,7 @@
                 android:layout_weight="1"
                 android:adjustViewBounds="true"
                 android:scaleType="centerCrop"
-                android:src="@drawable/img_article"
+                android:src="@drawable/ic_place_holder"
                 app:shapeAppearanceOverlay="@style/RoundedImage" />
 
             <LinearLayout
@@ -59,10 +60,9 @@
 
         </LinearLayout>
 
-        <!-- Border Bottom -->
         <View
             android:layout_width="match_parent"
-            android:layout_height="2dp"
+            android:layout_height="0.5dp"
             android:layout_marginTop="16dp"
             android:background="@color/grey_600" />
     </LinearLayout>

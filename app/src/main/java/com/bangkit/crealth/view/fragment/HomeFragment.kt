@@ -59,6 +59,7 @@ class HomeFragment : Fragment() {
                 }
                 binding.btnNotif.setOnClickListener {
                     Toast.makeText(requireContext(), "Notification is under Maintenance", Toast.LENGTH_LONG).show()
+                    binding.btnNotif.isEnabled = false
                 }
 
                 fetchData()
@@ -121,6 +122,39 @@ class HomeFragment : Fragment() {
                 photo = Photo(""),
                 brandName = "",
                 brandNameItemName = "Dummy Item 1",
+                locale = "",
+                nixItemId = ""
+            ),
+            BrandedFood(
+                foodName = "Dummy Food 2",
+                servingQty = "2".toDouble(),
+                servingUnit = "serving",
+                calories = 100,
+                photo = Photo(""),
+                brandName = "",
+                brandNameItemName = "Dummy Item 2",
+                locale = "",
+                nixItemId = ""
+            ),
+            BrandedFood(
+                foodName = "Dummy Food 3",
+                servingQty = "3".toDouble(),
+                servingUnit = "serving",
+                calories = 100,
+                photo = Photo(""),
+                brandName = "",
+                brandNameItemName = "Dummy Item 3",
+                locale = "",
+                nixItemId = ""
+            ),
+            BrandedFood(
+                foodName = "Dummy Food 4",
+                servingQty = "4".toDouble(),
+                servingUnit = "serving",
+                calories = 100,
+                photo = Photo(""),
+                brandName = "",
+                brandNameItemName = "Dummy Item 4",
                 locale = "",
                 nixItemId = ""
             )

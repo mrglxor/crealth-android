@@ -8,7 +8,6 @@ import androidx.appcompat.app.AlertDialog
 import com.bangkit.crealth.R
 import com.bangkit.crealth.data.factory.ViewModelFactory
 import com.bangkit.crealth.data.model.RegisterModel
-import com.bangkit.crealth.data.user.UserModel
 import com.bangkit.crealth.data.viewmodel.RegisterViewModel
 import com.bangkit.crealth.databinding.ActivityRegisterBinding
 

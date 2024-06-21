@@ -1,0 +1,26 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="center">
+
+    <Button
+        android:id="@+id/btnPrevious"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Previous"
+        android:visibility="gone"
+        android:backgroundTint="@color/textSecondary"
+        android:textColor="@android:color/black"
+        style="?android:attr/buttonBarButtonStyle" />
+
+    <Button
+        android:id="@+id/btnNext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Next"
+        android:backgroundTint="@color/textPrimary"
+        android:textColor="@android:color/black"
+        android:visibility="gone"
+        style="?android:attr/buttonBarButtonStyle" />
+</LinearLayout>

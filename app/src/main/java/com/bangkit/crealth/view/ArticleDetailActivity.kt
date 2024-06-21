@@ -1,13 +1,17 @@
 package com.bangkit.crealth.view
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.bangkit.crealth.R
 import com.bangkit.crealth.data.model.Article
 import com.bangkit.crealth.databinding.ActivityArticleDetailBinding
+import com.bumptech.glide.Glide
 
 class ArticleDetailActivity : AppCompatActivity() {
 
@@ -27,17 +31,27 @@ class ArticleDetailActivity : AppCompatActivity() {
         }
 
         val article = if(Build.VERSION.SDK_INT >= 33){
-            intent.getParcelableExtra<Article>(EXTRA_ARTICLE,Article::class.java)
+            intent.getParcelableExtra(EXTRA_ARTICLE,Article::class.java)
         }else {
             @Suppress("DEPRECATION")
-            intent.getParcelableExtra<Article>(EXTRA_ARTICLE)
+            intent.getParcelableExtra(EXTRA_ARTICLE)
         }
 
         if(article != null){
-            binding.ivArticleDetail.setImageResource(article.image)
+            article.urlToImage?.let {
+                Glide.with(binding.ivArticleDetail.context)
+                    .load(it)
+                    .placeholder(R.drawable.ic_place_holder)
+                    .into(binding.ivArticleDetail)
+            }
             binding.tvTitleDetail.text = article.title
-            val text = "id: ${article.id} - date: ${article.date}"
+            val text = "${article.source.id} | ${article.publishedAt.replace(Regex("T.*"),"")}"
             binding.desc.text = text
+            binding.detail.setOnClickListener {
+                val intent = Intent(Intent.ACTION_VIEW)
+                intent.data = Uri.parse(article.url)
+                startActivity(intent)
+            }
         }
     }
 }

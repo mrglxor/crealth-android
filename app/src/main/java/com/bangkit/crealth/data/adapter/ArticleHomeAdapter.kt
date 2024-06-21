@@ -22,7 +22,8 @@ class ArticleHomeAdapter(private val itemList: List<BrandedFood>) : RecyclerView
                 .transition(DrawableTransitionOptions.withCrossFade())
                 .into(binding.ivImg)
             binding.tvTitle.text = item.brandNameItemName
-            binding.tvDesc.text = "${item.servingQty} ${item.servingUnit} - ${item.calories} calories"
+            val text = "${item.servingQty} ${item.servingUnit} - ${item.calories} calories"
+            binding.tvDesc.text = text
 
             binding.cvArticleHome.setOnClickListener {
                 val url = "https://www.google.com/search?q=${item.brandNameItemName}"
