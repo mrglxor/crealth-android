@@ -14,7 +14,7 @@ documentation <u>Mobile Development</u> for Bangkit Capstone Project 2024 batch 
 ## Components
 
 <p align="center">
-    <img src="https://i.ibb.co.com/5hKhYZJ/components.png" alt="components">
+    <img src="https://i.ibb.co.com/h91B2FG/Components.png" alt="components">
 </p>
 
 ## Documents
